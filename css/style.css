@@ -1,0 +1,178 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* box sizing determines the border in relation to the parent container. */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /* font family sets the page's font, the second font listed is the backup font. */
+  font-weight: 400;
+  /* font-weight sets the boldness of the font, normal boldness is 400. */
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+  /* The padding adds the white border that goes around the entire webpage. */
+}
+
+.header {
+  height: 95vh;
+  /* setting height to 95 vh (view height) means that it wont reach the bottom of the viewmodel. */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.751),
+      rgba(40, 180, 133, 0.751)
+    ),
+    url(../img/hero.jpg);
+  /* We have two background images, both the linear gradient and the picture, to have 2 we need to seperate them with a comma. */
+  /* We can specify the direction at the start, this also needs to be followed by a comma. */
+  background-size: cover;
+  /* The background-size CSS property sets the size of the element's background image. */
+  background-position: top;
+  /* background position determines what part to crop out if window is resized. */
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+  /* This is creating the polygon that the image fits in, giving it the effect of part of the image disappearing. */
+  /* When creating the clip path polygon, you can use the placeholders (x y, x y, x y, x y) each one of these is a coordinate. */
+  /* Use clippy (in bookmarks) to make shapes. */
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  /* The position property specifies the type of positioning method used for an element (static, relative, absolute, fixed, or sticky). */
+  /* Absolute: The element is positioned relative to its first positioned (not static) ancestor element	*/
+  /* https://www.w3schools.com/cssref/pr_class_position.asp */
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* translate makes the text box aligned to the centre */
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* text-transform gives you the options of lower case or upper case. */
+  backface-visibility: hidden;
+  /* backface-vis hidden | gets rid of a weird jitter or shake at the end of animations */
+  margin-bottom: 60px;
+}
+
+.heading-primary-main {
+  display: block;
+  /* this displays the text in a box, not in a single line. */
+  font-size: 80px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1000ms;
+  /* animation-delay: 3s; to delay the animation */
+  /* animation-iteration-count: 3;  This would make the animation happen 3 times*/
+  animation-timing-function: ease-out;
+  /* animation-timing-function: sets the speed of certain parts of the animation, ease-out for example makes it initially faster, then slow towards the end of the animation. */
+}
+
+.heading-primary-sub {
+  display: block;
+  /* Every element has a default display value, this overrides it, and is useful in manipulating elements. */
+  /* block elements have a width of 100% */
+  font-size: 20px;
+  font-weight: 700;
+  /* different fonts have different weights available to them, if the font is imported from google sheets you can find the weight possibilities in the html where you reference it. */
+  letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  /* text decoration in this case is the default underline that the browser adds to text if linked. */
+  padding: 15px 40px;
+  display: inline-block;
+  /* This way the box model works on this element, use if you need padding or height or width to an element. */
+  border-radius: 100px;
+  transition: all 0.2s;
+  /* This gives all transitions that happen to the button 0.2 seconds to happen. */
+}
+/* btn link is the linked button before being clicked, and btn visited is the btns state after being clicked. We want it to return to normal so we put them together. */
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 00.2);
+  /* box-shadow's initial value is for the x axis shadow, then y axis shadow, the third value is for blur, then rgba for colour and opacity. */
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 00.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  /*for a pseudo element to appear on the page, you need to specify content, even if its jsut empty.*/
+  display: inline-block;
+  /*We want the buttons to look the same, so like the button its based of, we give it the same display.*/
+  height: 100%;
+  width: 100%;
+  /* The height and width work, because the after pseudo element is treated as a child class of the original button. */
+}
